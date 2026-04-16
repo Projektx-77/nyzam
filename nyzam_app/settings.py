@@ -3,7 +3,7 @@ import dj_database_url
 from decouple import config
 from pathlib import Path
 
-SECRET_KEY = config('SECRET_KEY', default='mAry05072007')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,12 +13,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jk_0ye1ogm&ze_rq4%v9*0=d*5$qoi9@)em%s@ticf$5-u$a^j'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!@#your_default_secret_key_here!@#')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Важно! На Railway будет False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.0.2.2']
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://nyzam.onrender.com/"
+]
+
 
 
 # Application definition
@@ -48,6 +55,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
