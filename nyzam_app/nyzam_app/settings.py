@@ -20,6 +20,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-!@#your_default_secre
 # Важно! На Railway будет False
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 #ALLOWED_HOSTS = ['nyzam-production.up.railway.app', '127.0.0.1', 'localhost', '10.0.2.2']
 
 
