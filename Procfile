@@ -1,0 +1,1 @@
+web: gunicorn nyzam_app.wsgi --log-file -

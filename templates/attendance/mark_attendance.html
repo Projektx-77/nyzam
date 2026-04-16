@@ -1,0 +1,31 @@
+<h2>{{ event.title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <table border="1">
+        <tr>
+            <th>Фото</th>
+            <th>ФИО</th>
+            <th>Присутствие</th>
+            <th>Причина</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>
+                <img src="{{ student.photo.url }}" width="50">
+            </td>
+            <td>{{ student.last_name }} {{ student.first_name }}</td>
+            <td>
+                <input type="radio" name="status_{{ student.id }}" value="present" required> 🟢
+                <input type="radio" name="status_{{ student.id }}" value="absent"> 🔴
+            </td>
+            <td>
+                <input type="text" name="reason_{{ student.id }}" placeholder="Причина">
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <button type="submit">Сохранить</button>
+</form>
