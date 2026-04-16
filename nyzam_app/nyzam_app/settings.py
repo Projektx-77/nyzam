@@ -3,7 +3,7 @@ import dj_database_url
 from decouple import config
 from pathlib import Path
 
-SECRET_KEY = config('SECRET_KEY', default='mAry05072007')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
