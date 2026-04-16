@@ -8,6 +8,22 @@ from django.http import HttpResponse
 
 
 
+
+
+def create_admin(request):
+    User = get_user_model()
+
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "admin@example.com", "admin123")
+        return HttpResponse("Admin created")
+
+    return HttpResponse("Admin already exists")
+
+
+
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api.urls')),
@@ -19,14 +35,6 @@ urlpatterns = [
 
 
 
-def create_admin(request):
-    User = get_user_model()
-
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser("admin", "admin@example.com", "admin123")
-        return HttpResponse("Admin created")
-
-    return HttpResponse("Admin already exists")
 
 
 
