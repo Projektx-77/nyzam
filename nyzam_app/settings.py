@@ -32,6 +32,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 INSTALLED_APPS = [
     #'unfold',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'jazzmin',
+    
     'accounts',
     'students',
     'events',
